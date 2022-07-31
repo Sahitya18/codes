@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
+        System.out.println(ispalindrome("bbab"));
+        System.out.println(longestPalindromeSubseq("bbab"));
+    }
+
+    public static int longestPalindromeSubseq(String s) {
+        return helper(s, "", 0);
+    }
+
+    private static int helper(String s, String add, int max) {
+        if (s.isEmpty()) {
+            return max;
+        }
+        return Math.max(
+                helper(s.substring(1), add + s.substring(0, 1),
+                        ispalindrome(add) ? max = max > add.length() ? max : add.length() : max),
+                helper(s.substring(1), add, max));
+    }
+
+    private static boolean ispalindrome(String add) {
+        return new StringBuilder(add).reverse().toString().equals(add);
+    }
+
+}
