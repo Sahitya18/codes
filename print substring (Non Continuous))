@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
+        longestPalindromeSubseq("bbab");
+    }
+
+    public static void longestPalindromeSubseq(String s) {
+        helper(s, "");
+    }
+
+    private static void helper(String s, String add) {
+        if (s.isEmpty()) {
+            System.out.println(add);
+            return;
+        }
+        helper(s.substring(1), add + s.substring(0, 1));
+        helper(s.substring(1), add);
+    }
+}
